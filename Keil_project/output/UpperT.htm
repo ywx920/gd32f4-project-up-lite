@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\output\UpperT.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\output\UpperT.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Oct 30 11:06:54 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Oct 30 15:42:50 2025
 <BR><P>
 <H3>Maximum Stack Usage =        264 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -384,8 +384,8 @@ Global Symbols
 <P><STRONG><a name="[61]"></a>__aeabi_uldivmod</STRONG> (Thumb, 98 bytes, Stack size 40 bytes, uldiv.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = __aeabi_uldivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;testTask
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
@@ -485,9 +485,9 @@ Global Symbols
 <P><STRONG><a name="[68]"></a>_double_epilogue</STRONG> (Thumb, 156 bytes, Stack size 32 bytes, depilogue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
@@ -1349,7 +1349,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lt1258SingleChipConfig
 </UL>
 
-<P><STRONG><a name="[8e]"></a>clrd125ConfigDeempSwing</STRONG> (Thumb, 104 bytes, Stack size 16 bytes, clrd125.o(i.clrd125ConfigDeempSwing))
+<P><STRONG><a name="[8e]"></a>clrd125ConfigDeempSwing</STRONG> (Thumb, 116 bytes, Stack size 16 bytes, clrd125.o(i.clrd125ConfigDeempSwing))
 <BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = clrd125ConfigDeempSwing &rArr; clrd125I2cHandler &rArr; clrd125Read &rArr; gpioI2cRead &rArr; gpioI2cRxDat &rArr; gpio_mode_set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clrd125I2cHandler
@@ -1357,7 +1357,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clrd125Init
 </UL>
 
-<P><STRONG><a name="[90]"></a>clrd125ConfigEq</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, clrd125.o(i.clrd125ConfigEq))
+<P><STRONG><a name="[90]"></a>clrd125ConfigEq</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, clrd125.o(i.clrd125ConfigEq))
 <BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = clrd125ConfigEq &rArr; clrd125I2cHandler &rArr; clrd125Read &rArr; gpioI2cRead &rArr; gpioI2cRxDat &rArr; gpio_mode_set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clrd125I2cHandler
@@ -1365,7 +1365,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clrd125Init
 </UL>
 
-<P><STRONG><a name="[91]"></a>clrd125ConfigInputEn</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, clrd125.o(i.clrd125ConfigInputEn))
+<P><STRONG><a name="[91]"></a>clrd125ConfigInputEn</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, clrd125.o(i.clrd125ConfigInputEn))
 <BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = clrd125ConfigInputEn &rArr; clrd125I2cHandler &rArr; clrd125Read &rArr; gpioI2cRead &rArr; gpioI2cRxDat &rArr; gpio_mode_set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clrd125I2cHandler
@@ -1373,7 +1373,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clrd125Init
 </UL>
 
-<P><STRONG><a name="[92]"></a>clrd125ConfigSel0Sel1</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, clrd125.o(i.clrd125ConfigSel0Sel1))
+<P><STRONG><a name="[92]"></a>clrd125ConfigSel0Sel1</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, clrd125.o(i.clrd125ConfigSel0Sel1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = clrd125ConfigSel0Sel1 &rArr; clrd125I2cHandler &rArr; clrd125Read &rArr; gpioI2cRead &rArr; gpioI2cRxDat &rArr; gpio_mode_set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clrd125I2cHandler

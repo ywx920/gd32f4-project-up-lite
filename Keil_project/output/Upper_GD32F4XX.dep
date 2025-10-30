@@ -42,7 +42,7 @@ I (..\systick.h)(0x62CE389C)
 I (..\bsp\serial.h)(0x6257DFF6)
 I (..\bsp\common.h)(0x6257DFF6)
 I (..\bsp\led.h)(0x6257DFF6)
-F (..\main.c)(0x6902D436)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Firmware\CMSIS\GD\GD32F4xx\Include -I ..\..\Utilities -I ..\..\Firmware\CMSIS -I ..\..\project_up -I ..\..\Firmware\CMSIS\GD\GD32F4xx\Source\ARM -I ..\..\Firmware\GD32F4xx_standard_peripheral\Include -I ..\bsp -I ..\Firmware\CMSIS -I ..\Firmware\GD32F4xx_standard_peripheral\Include -I ..\Firmware\CMSIS\GD\GD32F4xx\Include-ID:\Keil_v5\ARM\PACK\GigaDevice\GD32F4xx_DFP\2.0.0\Device\F4XX\Include-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\PACK\GigaDevice\GD32F4xx_DFP\2.0.0-D__UVISION_VERSION="533" -DGD32F407 -DUSE_STDPERIPH_DRIVER-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
+F (..\main.c)(0x6902FC39)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Firmware\CMSIS\GD\GD32F4xx\Include -I ..\..\Utilities -I ..\..\Firmware\CMSIS -I ..\..\project_up -I ..\..\Firmware\CMSIS\GD\GD32F4xx\Source\ARM -I ..\..\Firmware\GD32F4xx_standard_peripheral\Include -I ..\bsp -I ..\Firmware\CMSIS -I ..\Firmware\GD32F4xx_standard_peripheral\Include -I ..\Firmware\CMSIS\GD\GD32F4xx\Include-ID:\Keil_v5\ARM\PACK\GigaDevice\GD32F4xx_DFP\2.0.0\Device\F4XX\Include-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\PACK\GigaDevice\GD32F4xx_DFP\2.0.0-D__UVISION_VERSION="533" -DGD32F407 -DUSE_STDPERIPH_DRIVER-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
 I (..\Firmware\CMSIS\GD\GD32F4xx\Include\gd32f4xx.h)(0x6257DFEE)
 I (..\Firmware\CMSIS\core_cm4.h)(0x6257DFEE)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -93,8 +93,8 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (..\Version_MSG.h)(0x6257DFF6)
 I (..\bsp\serial.h)(0x6257DFF6)
-I (..\bsp\LT1258.h)(0x6902D535)
-I (..\bsp\CLRD125.h)(0x6902D64B)
+I (..\bsp\LT1258.h)(0x6902FA07)
+I (..\bsp\CLRD125.h)(0x690316F8)
 I (..\..\project_up\systick.h)(0x62CE389C)
 F (..\systick.c)(0x6257DFF6)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Firmware\CMSIS\GD\GD32F4xx\Include -I ..\..\Utilities -I ..\..\Firmware\CMSIS -I ..\..\project_up -I ..\..\Firmware\CMSIS\GD\GD32F4xx\Source\ARM -I ..\..\Firmware\GD32F4xx_standard_peripheral\Include -I ..\bsp -I ..\Firmware\CMSIS -I ..\Firmware\GD32F4xx_standard_peripheral\Include -I ..\Firmware\CMSIS\GD\GD32F4xx\Include-ID:\Keil_v5\ARM\PACK\GigaDevice\GD32F4xx_DFP\2.0.0\Device\F4XX\Include-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\PACK\GigaDevice\GD32F4xx_DFP\2.0.0-D__UVISION_VERSION="533" -DGD32F407 -DUSE_STDPERIPH_DRIVER-o .\output\systick.o --omf_browse .\output\systick.crf --depend .\output\systick.d)
 I (..\Firmware\CMSIS\GD\GD32F4xx\Include\gd32f4xx.h)(0x6257DFEE)
@@ -1701,14 +1701,14 @@ I (..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_misc.h)(0x6257DFF0)
 I (..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_enet.h)(0x6257DFEE)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_exmc.h)(0x6257DFEE)
-I (..\bsp\LT1258.h)(0x6902D535)
+I (..\bsp\LT1258.h)(0x6902FA07)
 I (..\bsp\gpio_i2c.h)(0x673EDB65)
 I (..\bsp\common.h)(0x6257DFF6)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
-F (..\bsp\LT1258.h)(0x6902D535)()
-F (..\bsp\CLRD125.c)(0x6902D5D8)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Firmware\CMSIS\GD\GD32F4xx\Include -I ..\..\Utilities -I ..\..\Firmware\CMSIS -I ..\..\project_up -I ..\..\Firmware\CMSIS\GD\GD32F4xx\Source\ARM -I ..\..\Firmware\GD32F4xx_standard_peripheral\Include -I ..\bsp -I ..\Firmware\CMSIS -I ..\Firmware\GD32F4xx_standard_peripheral\Include -I ..\Firmware\CMSIS\GD\GD32F4xx\Include-ID:\Keil_v5\ARM\PACK\GigaDevice\GD32F4xx_DFP\2.0.0\Device\F4XX\Include-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\PACK\GigaDevice\GD32F4xx_DFP\2.0.0-D__UVISION_VERSION="533" -DGD32F407 -DUSE_STDPERIPH_DRIVER-o .\output\clrd125.o --omf_browse .\output\clrd125.crf --depend .\output\clrd125.d)
-I (..\bsp\CLRD125.h)(0x6902D64B)
+F (..\bsp\LT1258.h)(0x6902FA07)()
+F (..\bsp\CLRD125.c)(0x690316F9)(-c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Firmware\CMSIS\GD\GD32F4xx\Include -I ..\..\Utilities -I ..\..\Firmware\CMSIS -I ..\..\project_up -I ..\..\Firmware\CMSIS\GD\GD32F4xx\Source\ARM -I ..\..\Firmware\GD32F4xx_standard_peripheral\Include -I ..\bsp -I ..\Firmware\CMSIS -I ..\Firmware\GD32F4xx_standard_peripheral\Include -I ..\Firmware\CMSIS\GD\GD32F4xx\Include-ID:\Keil_v5\ARM\PACK\GigaDevice\GD32F4xx_DFP\2.0.0\Device\F4XX\Include-ID:\Keil_v5\ARM\CMSIS\Include-ID:\Keil_v5\ARM\PACK\GigaDevice\GD32F4xx_DFP\2.0.0-D__UVISION_VERSION="533" -DGD32F407 -DUSE_STDPERIPH_DRIVER-o .\output\clrd125.o --omf_browse .\output\clrd125.crf --depend .\output\clrd125.d)
+I (..\bsp\CLRD125.h)(0x690316F8)
 I (..\Firmware\CMSIS\GD\GD32F4xx\Include\gd32f4xx.h)(0x6257DFEE)
 I (..\Firmware\CMSIS\core_cm4.h)(0x6257DFEE)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -1747,8 +1747,8 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
 I (..\Firmware\GD32F4xx_standard_peripheral\Include\gd32f4xx_exmc.h)(0x6257DFEE)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (..\bsp\common.h)(0x6257DFF6)
-I (..\bsp\LT1258.h)(0x6902D535)
+I (..\bsp\LT1258.h)(0x6902FA07)
 I (..\bsp\gpio_i2c.h)(0x673EDB65)
 I (..\..\project_up\systick.h)(0x62CE389C)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
-F (..\bsp\CLRD125.h)(0x6902D64B)()
+F (..\bsp\CLRD125.h)(0x690316F8)()
