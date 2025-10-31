@@ -42,60 +42,120 @@ static ERR_STA clrd125I2cHandler(uint8_t regAddr, uint8_t *pData, uint8_t isWrit
     return sta;
 }
 
+// static ERR_STA clrd125ConfigInputEn(void)
+// {
+//     uint8_t data = CLRD125_INPUT_EN_VAL;  // 宏已从表格提取，无需改函数
+//     return clrd125I2cHandler(CLRD125_REG_INPUT_EN, &data, 1);
+// }
+
+/* 启用扇出 */
 static ERR_STA clrd125ConfigInputEn(void)
 {
-    uint8_t data = CLRD125_INPUT_EN_VAL;  // 宏已从表格提取，无需改函数
-    return clrd125I2cHandler(CLRD125_REG_INPUT_EN, &data, 1);
+    uint8_t data = 0;
+    // 配置input_en<1:0>=11（地址79的bit1~bit0），启用1:2扇出
+    data = CLRD125_INPUT_EN_VAL;  // 0x03
+    return clrd125I2cHandler(0x79, &data, 1);  // 直接操作地址79的input_en位
 }
 
+// static ERR_STA clrd125ConfigSel0Sel1(void)
+// {
+//     uint8_t data = 0;
+//     ERR_STA sta = STA_ERR;
+
+//     data = CLRD125_SEL0_VAL;  // 宏从表格提取
+//     sta = clrd125I2cHandler(CLRD125_REG_SEL0, &data, 1);
+//     if (STA_OK != sta) return sta;
+
+//     data = CLRD125_SEL1_VAL;  // 宏从表格提取
+//     sta = clrd125I2cHandler(CLRD125_REG_SEL1, &data, 1);
+//     return sta;
+// }
+
+/* 原有函数仅配置单通道路由，修改支持 “双通道灵活选择” */
 static ERR_STA clrd125ConfigSel0Sel1(void)
 {
     uint8_t data = 0;
     ERR_STA sta = STA_ERR;
 
-    data = CLRD125_SEL0_VAL;  // 宏从表格提取
-    sta = clrd125I2cHandler(CLRD125_REG_SEL0, &data, 1);
+    // 配置SEL0（通道0：S_INA0±→S_OUTA0±，模拟LT1258的固定路由）
+    data = CLRD125_SEL0_VAL;  // 0x03（sel0<1:0>=11）
+    sta = clrd125I2cHandler(0x79, &data, 1);  // 直接操作地址79的sel0位（而非原REG_SEL0=0x02）
     if (STA_OK != sta) return sta;
 
-    data = CLRD125_SEL1_VAL;  // 宏从表格提取
-    sta = clrd125I2cHandler(CLRD125_REG_SEL1, &data, 1);
+    // 配置SEL1（通道1：S_INA1±→S_OUTA1±，模拟LT1258的固定路由）
+    data = (CLRD125_SEL1_VAL << 2);  // sel1<1:0>占地址79的bit3~bit2，左移2位
+    sta = clrd125I2cHandler(0x79, &data, 1);
     return sta;
 }
 
+// static ERR_STA clrd125ConfigEq(void)
+// {
+//     uint8_t data = CLRD125_EQ_VAL;  // 宏从表格提取
+//     ERR_STA sta = STA_ERR;
+
+//     sta = clrd125I2cHandler(CLRD125_REG_EQ_D0, &data, 1);
+//     if (STA_OK != sta) return sta;
+//     sta = clrd125I2cHandler(CLRD125_REG_EQ_D1, &data, 1);
+//     if (STA_OK != sta) return sta;
+
+//     sta = clrd125I2cHandler(CLRD125_REG_EQ_S0, &data, 1);
+//     if (STA_OK != sta) return sta;
+//     sta = clrd125I2cHandler(CLRD125_REG_EQ_S1, &data, 1);
+//     return sta;
+// }
+
+// static ERR_STA clrd125ConfigDeempSwing(void)
+// {
+//     uint8_t data = 0;
+//     ERR_STA sta = STA_ERR;
+
+//     data = CLRD125_VOD_VAL;  // 宏从表格提取
+//     sta = clrd125I2cHandler(CLRD125_REG_VOD, &data, 1);
+//     if (STA_OK != sta) return sta;
+
+//     data = CLRD125_DEEMP_VAL;  // 宏从表格提取
+//     sta = clrd125I2cHandler(CLRD125_REG_DEM_D0, &data, 1);
+//     if (STA_OK != sta) return sta;
+//     sta = clrd125I2cHandler(CLRD125_REG_DEM_D1, &data, 1);
+//     if (STA_OK != sta) return sta;
+
+//     sta = clrd125I2cHandler(CLRD125_REG_DEM_S0, &data, 1);
+//     if (STA_OK != sta) return sta;
+//     sta = clrd125I2cHandler(CLRD125_REG_DEM_S1, &data, 1);
+//     return sta;
+// }
+
+// 均衡配置：按通道配置ch0/ch1，模拟LT1258的四通道独立调理
 static ERR_STA clrd125ConfigEq(void)
 {
-    uint8_t data = CLRD125_EQ_VAL;  // 宏从表格提取
+    uint8_t data = CLRD125_EQ_VAL;  // 0x0F（30dB）
     ERR_STA sta = STA_ERR;
 
-    sta = clrd125I2cHandler(CLRD125_REG_EQ_D0, &data, 1);
+    // 通道0均衡（ctle_ctrl_ch0，地址15）
+    sta = clrd125I2cHandler(0x0F, &data, 1);  // 地址15=ctle_ctrl_ch0
     if (STA_OK != sta) return sta;
-    sta = clrd125I2cHandler(CLRD125_REG_EQ_D1, &data, 1);
-    if (STA_OK != sta) return sta;
-
-    sta = clrd125I2cHandler(CLRD125_REG_EQ_S0, &data, 1);
-    if (STA_OK != sta) return sta;
-    sta = clrd125I2cHandler(CLRD125_REG_EQ_S1, &data, 1);
+    // 通道1均衡（ctle_ctrl_ch1，地址22）
+    sta = clrd125I2cHandler(0x16, &data, 1);  // 地址22=ctle_ctrl_ch1
     return sta;
 }
 
+// 去加重+摆幅配置：按通道配置，模拟LT1258的全通道独立调理
 static ERR_STA clrd125ConfigDeempSwing(void)
 {
-    uint8_t data = 0;
+    uint8_t dem_data = CLRD125_DEEMP_VAL;  // 0x01（-3.5dB）
+    uint8_t vod_data = CLRD125_VOD_VAL;    // 0x04（1.0Vp-p）
     ERR_STA sta = STA_ERR;
 
-    data = CLRD125_VOD_VAL;  // 宏从表格提取
-    sta = clrd125I2cHandler(CLRD125_REG_VOD, &data, 1);
+    // 通道0：去加重（dem_ch0，地址24）+ 摆幅（vod_ch0，地址23）
+    sta = clrd125I2cHandler(0x18, &dem_data, 1);  // 地址24=dem_ch1（对应通道0）
+    if (STA_OK != sta) return sta;
+    sta = clrd125I2cHandler(0x17, &vod_data, 1);  // 地址23=vod_ch1（对应通道0）
     if (STA_OK != sta) return sta;
 
-    data = CLRD125_DEEMP_VAL;  // 宏从表格提取
-    sta = clrd125I2cHandler(CLRD125_REG_DEM_D0, &data, 1);
+    // 通道1：去加重（dem_ch1，地址38）+ 摆幅（vod_ch1，地址37）
+    sta = clrd125I2cHandler(0x26, &dem_data, 1);  // 地址38=dem_ch3（对应通道1）
     if (STA_OK != sta) return sta;
-    sta = clrd125I2cHandler(CLRD125_REG_DEM_D1, &data, 1);
-    if (STA_OK != sta) return sta;
-
-    sta = clrd125I2cHandler(CLRD125_REG_DEM_S0, &data, 1);
-    if (STA_OK != sta) return sta;
-    sta = clrd125I2cHandler(CLRD125_REG_DEM_S1, &data, 1);
+    sta = clrd125I2cHandler(0x25, &vod_data, 1);  // 地址37=vod_ch3（对应通道1）
     return sta;
 }
 

@@ -13,6 +13,10 @@
         "stdint.h": "c",
         "stdio.h": "c",
         "string.h": "c",
-        "gpio_i2c.h": "c"
+        "gpio_i2c.h": "c",
+        "gn1406.h": "c",
+        "stdlib.h": "c",
+        "clrd125.h": "c",
+        "common.h": "c"
     }
 }
