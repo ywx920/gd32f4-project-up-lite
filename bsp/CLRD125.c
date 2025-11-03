@@ -2,9 +2,7 @@
 #include "LT1258.h"  
 #include <string.h>
 
-// ###########################################################################
-// 新增：CLRD125配置表格（D[0]~D[79]，原始表格值，全局数组）
-// ###########################################################################
+// CLRD125配置表格（D[0]~D[79]，原始表格值，全局数组）
 uint8_t D[80] = {
     0x04,0x00,0x01,0x02,0x02,0xFF,0x08,0x00,0x0C,0xA0,
     0xA0,0x00,0x00,0xAA,0x0C,0x03,0x00,0x00,0x00,0x00,
@@ -16,12 +14,10 @@ uint8_t D[80] = {
     0xFF,0x00,0x00,0x00,0x00,0x00,0x02,0x00,0x07,0xFC
 };
 
-// ###########################################################################
 // 静态辅助函数
-// ###########################################################################
 static ERR_STA clrd125I2cHandler(uint8_t regAddr, uint8_t *pData, uint8_t isWrite)
 {
-    uint8_t retry = RETRY_CNT;  // 复用LT1258的RETRY_CNT宏（原逻辑不变）
+    uint8_t retry = RETRY_CNT;  
     ERR_STA sta = STA_ERR;
 
     while (retry--)
@@ -44,11 +40,12 @@ static ERR_STA clrd125I2cHandler(uint8_t regAddr, uint8_t *pData, uint8_t isWrit
 
 // static ERR_STA clrd125ConfigInputEn(void)
 // {
-//     uint8_t data = CLRD125_INPUT_EN_VAL;  // 宏已从表格提取，无需改函数
+//     uint8_t data = CLRD125_INPUT_EN_VAL;  // 宏从表格提取
 //     return clrd125I2cHandler(CLRD125_REG_INPUT_EN, &data, 1);
 // }
 
 /* 启用扇出 */
+// 对地址79（0x4F）写入0xFC，表示使能通道、启用扇出（合并操作）
 static ERR_STA clrd125ConfigInputEn(void)
 {
     uint8_t data = 0;
@@ -71,18 +68,18 @@ static ERR_STA clrd125ConfigInputEn(void)
 //     return sta;
 // }
 
-/* 原有函数仅配置单通道路由，修改支持 “双通道灵活选择” */
+/* 修改支持双通道 */
 static ERR_STA clrd125ConfigSel0Sel1(void)
 {
     uint8_t data = 0;
     ERR_STA sta = STA_ERR;
 
-    // 配置SEL0（通道0：S_INA0±→S_OUTA0±，模拟LT1258的固定路由）
+    // 配置SEL0（通道0：S_INA0±→S_OUTA0±）
     data = CLRD125_SEL0_VAL;  // 0x03（sel0<1:0>=11）
-    sta = clrd125I2cHandler(0x79, &data, 1);  // 直接操作地址79的sel0位（而非原REG_SEL0=0x02）
+    sta = clrd125I2cHandler(0x79, &data, 1);  // 直接操作地址79的sel0位
     if (STA_OK != sta) return sta;
 
-    // 配置SEL1（通道1：S_INA1±→S_OUTA1±，模拟LT1258的固定路由）
+    // 配置SEL1（通道1：S_INA1±→S_OUTA1±）
     data = (CLRD125_SEL1_VAL << 2);  // sel1<1:0>占地址79的bit3~bit2，左移2位
     sta = clrd125I2cHandler(0x79, &data, 1);
     return sta;
@@ -125,6 +122,7 @@ static ERR_STA clrd125ConfigSel0Sel1(void)
 //     return sta;
 // }
 
+// 两通道一样：通道1地址15，通道2地址22，写入的值皆为0x03
 // 均衡配置：按通道配置ch0/ch1，模拟LT1258的四通道独立调理
 static ERR_STA clrd125ConfigEq(void)
 {
@@ -139,7 +137,8 @@ static ERR_STA clrd125ConfigEq(void)
     return sta;
 }
 
-// 去加重+摆幅配置：按通道配置，模拟LT1258的全通道独立调理
+// 对地址24、地址38写入0x01（-3.5dB），对地址23、地址37写入0x04（1.0V）
+// 去加重+摆幅配置（按通道配置）
 static ERR_STA clrd125ConfigDeempSwing(void)
 {
     uint8_t dem_data = CLRD125_DEEMP_VAL;  // 0x01（-3.5dB）
@@ -159,9 +158,7 @@ static ERR_STA clrd125ConfigDeempSwing(void)
     return sta;
 }
 
-// ###########################################################################
 // 公开接口（保留原逻辑）
-// ###########################################################################
 ERR_STA clrd125Init(void)
 {
     ERR_STA sta = STA_ERR;

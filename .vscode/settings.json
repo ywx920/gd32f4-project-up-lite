@@ -17,6 +17,7 @@
         "gn1406.h": "c",
         "stdlib.h": "c",
         "clrd125.h": "c",
-        "common.h": "c"
+        "common.h": "c",
+        "spi.h": "c"
     }
 }

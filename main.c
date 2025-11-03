@@ -48,8 +48,7 @@ typedef struct
 static uint64_t g_led_last_tick = 0;  // LED任务计时
 static uint64_t g_test_last_tick = 0; // 测试任务计时
 
-/************************** 工具函数优化 **************************/
-// 通用：将8位整数转为二进制字符串并打印
+// 8位整数转二进制
 static void dec2bin_common(uint8_t n, const char *prefix, uint8_t min_digits)
 {
     int result = 0, k = 1, i, temp = n;
@@ -63,7 +62,6 @@ static void dec2bin_common(uint8_t n, const char *prefix, uint8_t min_digits)
     printf("%s:%0*d\r\n", prefix, min_digits, result);
 }
 
-// 保留原函数名，内部调用通用函数
 void Dec2Bin(uint8_t n)
 {
     dec2bin_common(n, "read_los SFP_LOS", 8);
@@ -81,7 +79,6 @@ void Dec2Bin_LOS(uint8_t n)
     dec2bin_common(n, "The LOS_val", 8);
 }
 
-/************************** 硬件操作封装 **************************/
 // LED控制封装
 static void led_control(FLED_NUM led, uint8_t state)
 {
@@ -118,7 +115,6 @@ static void uart_send(uint32_t usart, uint8_t *data, uint16_t len)
     serialSend(usart, data, len);
 }
 
-/************************** 任务拆分 **************************/
 // 处理LOS状态与LED控制（testTask）
 static void process_los_status(uint8_t los_val, StatusFrame *frame)
 {
@@ -206,7 +202,6 @@ static void build_status_frame(StatusFrame *frame, uint8_t los_val, uint8_t *tem
     }
 }
 
-/************************** 任务函数 **************************/
 void ledTask(void)
 {
     if (systick - g_led_last_tick > LED_TASK_CYCLE)
@@ -252,7 +247,6 @@ void BBXX_ouput(void)
            VERSION_A, VERSION_CD, VERSION_EFG, __DATE__, __TIME__);
 }
 
-/************************** 初始化与主函数 **************************/
 static void hardware_init(void)
 {
     int8_t retry; 
